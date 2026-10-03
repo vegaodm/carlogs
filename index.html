@@ -13,25 +13,24 @@
     h3 { font-size: 1em; margin-top: 20px; }
     p, li { font-size: 0.95em; color: #3a3a3c; }
     .meta { color: #6e6e73; font-size: 0.85em; }
+    .version { color: #6e6e73; font-size: 0.85em; margin: 0 0 1em; }
     a { color: #0066cc; text-decoration: none; }
     ul { padding-left: 20px; }
-    .lang { margin: 0 0 16px; font-size: 0.9em; color: #6e6e73; }
-    .lang a { margin-right: 8px; padding: 4px 10px; border-radius: 6px; }
+    .lang { margin: 0 0 16px; font-size: 0.9em; color: #6e6e73; line-height: 2; }
+    .lang a { margin-right: 8px; padding: 4px 10px; border-radius: 6px; white-space: nowrap; }
     .lang a.active { background: #0066cc; color: #fff; }
     .lang a:not(.active) { color: #0066cc; }
-    .hidden-zh { display: none; }
+    .lang-panel { display: none; }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <p class="lang">
-      <a href="#" id="enBtn" class="active">English</a>
-      <a href="#" id="zhBtn">中文</a>
-    </p>
+    <p class="lang" id="langBar"></p>
 
     <!-- ============ English (default) ============ -->
-    <div id="en">
+    <div class="lang-panel" data-lang="en">
       <h1>CarLogs Privacy Policy</h1>
+      <p class="version">Version 1.2 (Build 3)</p>
       <p class="meta">Effective date: 2026-09-20</p>
 
       <p>CarLogs (hereafter "the App") is a tool for recording personal vehicle fuel fills, maintenance, oil checks, and expenses. We take your privacy seriously. This policy explains how information is handled while you use the App.</p>
@@ -45,7 +44,7 @@
         <li>Expense records: date, odometer (optional), category, cost, optional note.</li>
         <li>Settings such as categories, interface language, and currency preference.</li>
       </ul>
-      <p>The App does <strong>not</strong> collect your name, contact information, precise location, photos, contacts, or any other personally identifiable information.</p>
+      <p>The App does <strong>not</strong> collect your name, contact information, precise location, photos, contacts, or any other personally identifiable information. When you scan a fuel meter, the photograph is read on your device and discarded; only the figures you confirm are saved.</p>
 
       <h2>2. Data Storage</h2>
       <p>All data is stored <strong>only on your device</strong> in a local SQLite database inside the app's sandbox. Nothing is uploaded to any server. Your preferences (language, currency, backups) are also stored locally on your device.</p>
@@ -77,9 +76,10 @@
       <p>If you have any questions about this policy, please contact us through the <a href="support.html">Support page</a>.</p>
     </div>
 
-    <!-- ============ 中文 ============ -->
-    <div id="zh" class="hidden-zh">
+    <!-- ============ 简体中文 ============ -->
+    <div class="lang-panel" data-lang="zh">
       <h1>CarLogs 隐私政策</h1>
+      <p class="version">版本 1.2（Build 3）</p>
       <p class="meta">生效日期：2026-09-20</p>
 
       <p>CarLogs（以下简称"本应用"）是一款用于记录个人车辆加油、保养、机油检查与费用支出的工具。我们非常重视您的隐私。本政策说明本应用如何处理您在使用过程中产生的信息。</p>
@@ -93,7 +93,7 @@
         <li>费用记录：日期、里程（可选）、费用类别、费用、可选备注；</li>
         <li>类别信息、界面语言与货币偏好等设置。</li>
       </ul>
-      <p>本应用<strong>不收集</strong>您的姓名、联系方式、精确位置、照片、通讯录等任何个人身份信息。</p>
+      <p>本应用<strong>不收集</strong>您的姓名、联系方式、精确位置、照片、通讯录等任何个人身份信息。拍摄加油机读数时，照片只在本机读取后即丢弃，仅保存您确认的数字。</p>
 
       <h2>2. 信息的存储</h2>
       <p>以上数据均以 SQLite 数据库形式<strong>仅存储于您的设备本机</strong>（应用的沙盒目录中），不会上传至任何服务器。您的备份偏好、语言、货币等设置同样仅保存在本机。</p>
@@ -124,22 +124,479 @@
       <h2>10. 联系我们</h2>
       <p>如果您对本政策或隐私实践有任何疑问，请通过 <a href="support.html">支持页面</a> 与我们联系。</p>
     </div>
+
+    <!-- ============ Español ============ -->
+    <div class="lang-panel" data-lang="es">
+      <h1>Política de privacidad de CarLogs</h1>
+      <p class="version">Versión 1.2 (Build 3)</p>
+      <p class="meta">Fecha de entrada en vigor: 2026-09-20</p>
+
+      <p>CarLogs (en adelante, "la aplicación") es una herramienta para registrar repostajes de combustible, mantenimiento, revisiones de aceite y gastos de un vehículo personal. Nos tomamos su privacidad muy en serio. Esta política explica cómo se gestiona la información mientras utiliza la aplicación.</p>
+
+      <h2>1. Información que procesamos</h2>
+      <p>La aplicación solo procesa los datos que usted introduce en este dispositivo:</p>
+      <ul>
+        <li>Registros de combustible: fecha, lectura del odómetro, volumen, coste, nota opcional.</li>
+        <li>Registros de mantenimiento: fecha, odómetro, categoría de mantenimiento, coste, nota opcional.</li>
+        <li>Registros de revisión de aceite: fecha, odómetro, resultado, cantidad de relleno opcional, nota opcional.</li>
+        <li>Registros de gastos: fecha, odómetro (opcional), categoría, coste, nota opcional.</li>
+        <li>Ajustes como categorías, idioma de la interfaz y preferencia de moneda.</li>
+      </ul>
+      <p>La aplicación <strong>no</strong> recopila su nombre, datos de contacto, ubicación precisa, fotos, contactos ni ninguna otra información de identificación personal. Cuando escanea un surtidor, la fotografía se lee en su dispositivo y se descarta; solo se guardan las cifras que usted confirma.</p>
+
+      <h2>2. Almacenamiento de datos</h2>
+      <p>Todos los datos se almacenan <strong>solo en su dispositivo</strong> en una base de datos SQLite local dentro del sandbox de la aplicación. Nada se sube a ningún servidor. Sus preferencias (idioma, moneda, copias de seguridad) también se guardan localmente en su dispositivo.</p>
+      <p>De acuerdo con los mecanismos de iOS, las copias de seguridad de iTunes/Finder o iCloud realizadas a través de su sistema pueden incluir los datos locales de la aplicación. Dichas copias se controlan desde los ajustes de su sistema.</p>
+
+      <h2>3. Cómo usamos la información</h2>
+      <p>La aplicación utiliza estos datos solo en su dispositivo para mostrar listas de registros, generar estadísticas y gráficos, calcular el consumo de combustible y programar recordatorios locales (como los de revisión de aceite) según sus ajustes. Todo el cálculo se realiza localmente.</p>
+
+      <h2>4. Compartir información</h2>
+      <p><strong>No</strong> vendemos, alquilamos ni divulgamos sus datos a terceros. La aplicación no contiene SDK de publicidad, SDK de análisis ni código de seguimiento de terceros.</p>
+      <p>Solo cuando usted utiliza activamente "Exportar base de datos", la aplicación genera una copia local del archivo SQLite para que la guarde o comparta; cuando utiliza "Importar base de datos", la aplicación solo lee un archivo que usted eligió. Cualquier transferencia de datos fuera de su dispositivo es totalmente decisión suya.</p>
+
+      <h2>5. Notificaciones locales</h2>
+      <p>Los recordatorios locales, como las notificaciones de revisión de aceite, son programados por el sistema en el dispositivo y no implican ninguna transmisión por red.</p>
+
+      <h2>6. Seguridad de los datos</h2>
+      <p>Los datos se guardan en el directorio sandbox protegido de la aplicación, accesible solo por ella. Le recomendamos hacer copias de seguridad periódicas de sus registros con la función "Exportar base de datos".</p>
+
+      <h2>7. Privacidad de los menores</h2>
+      <p>La aplicación no está dirigida a menores de 13 años y no recopila conscientemente información personal de menores.</p>
+
+      <h2>8. Eliminación de datos</h2>
+      <p>Puede deslizar hacia la izquierda en cualquier registro para eliminarlo, o eliminar categorías en "Ajustes &gt; Categorías". Al desinstalar la aplicación se borran todos los datos locales (los archivos que haya exportado son gestionados por usted).</p>
+
+      <h2>9. Actualizaciones de la política</h2>
+      <p>Podemos actualizar esta política de vez en cuando. Las actualizaciones se publicarán en esta página; si un cambio es significativo, se lo notificaremos mediante las notas de la versión de la aplicación.</p>
+
+      <h2>10. Contacto</h2>
+      <p>Si tiene alguna pregunta sobre esta política, póngase en contacto a través de la <a href="support.html">página de soporte</a>.</p>
+    </div>
+
+    <!-- ============ 日本語 ============ -->
+    <div class="lang-panel" data-lang="ja">
+      <h1>CarLogs プライバシーポリシー</h1>
+      <p class="version">バージョン 1.2 (Build 3)</p>
+      <p class="meta">発効日：2026年9月20日</p>
+
+      <p>CarLogs（以下「本アプリ」）は、個人の車両の給油、メンテナンス、オイルチェック、出費を記録するためのツールです。当社はお客様のプライバシーを非常に重視しています。本ポリシーは、本アプリの利用中に情報がどのように取り扱われるかを説明するものです。</p>
+
+      <h2>1. 処理する情報</h2>
+      <p>本アプリが処理するのは、このデバイス上であなたが入力したデータのみです。</p>
+      <ul>
+        <li>給油記録：日付、走行距離（オドメーター）、給油量、費用、任意のメモ。</li>
+        <li>メンテナンス記録：日付、走行距離、メンテナンスカテゴリ、費用、任意のメモ。</li>
+        <li>オイルチェック記録：日付、走行距離、結果、任意の補充量、任意のメモ。</li>
+        <li>出費記録：日付、走行距離（任意）、カテゴリ、費用、任意のメモ。</li>
+        <li>カテゴリ、インターフェース言語、通貨の設定など。</li>
+      </ul>
+      <p>本アプリは、氏名、連絡先情報、正確な位置情報、写真、連絡先など、個人を特定できる情報を<strong>収集しません</strong>。給油機をスキャンした写真は端末内だけで読み取られ、その後破棄されます。保存されるのは、あなたが確認した数値だけです。</p>
+
+      <h2>2. データの保存</h2>
+      <p>すべてのデータは、アプリのサンドボックス内のローカル SQLite データベースとして<strong>お使いのデバイスにのみ</strong>保存され、いかなるサーバーにもアップロードされません。設定（言語、通貨など）もお使いのデバイスにのみ保存されます。</p>
+      <p>iOS の仕組みに従い、iTunes/Finder または iCloud バックアップには本アプリのローカルデータが含まれることがあります。そのようなバックアップはシステム設定によって管理されます。</p>
+
+      <h2>3. 情報の利用方法</h2>
+      <p>本アプリは、記録リストの表示、統計・グラフの作成、燃費計算、設定に応じたローカル通知（オイルチェック通知など）のスケジュールのために、このデータをデバイス上でのみ使用します。すべての計算はローカルで行われます。</p>
+
+      <h2>4. 情報の共有</h2>
+      <p>当社はお客様のデータを第三者に販売、貸与、開示することは<strong>一切ありません</strong>。本アプリには広告 SDK、分析 SDK、第三者による追跡コードは含まれていません。</p>
+      <p>「データベースを書き出す」を明示的に利用した場合のみ、本アプリは保存・共有用の SQLite ファイルのコピーをローカルに生成します。「データベースを読み込む」を利用した場合は、選択したファイルを読み込むだけです。デバイス外へのデータの転送はすべてお客様の判断で行われます。</p>
+
+      <h2>5. ローカル通知</h2>
+      <p>オイルチェック通知などのローカル通知は、システムがデバイス上でスケジュールし、ネットワーク通信は発生しません。</p>
+
+      <h2>6. データのセキュリティ</h2>
+      <p>データはアプリの保護されたサンドボックスディレクトリに保存され、本アプリのみがアクセスできます。「データベースを書き出す」機能で定期的にバックアップすることをお勧めします。</p>
+
+      <h2>7. 子どものプライバシー</h2>
+      <p>本アプリは13歳未満の子どもを対象としておらず、子どもから個人情報を意図的に収集することもありません。</p>
+
+      <h2>8. データの削除</h2>
+      <p>記録を左スワイプして削除するか、「設定 &gt; カテゴリ」でカテゴリを削除できます。アプリを削除するとローカルデータはすべて消去されます（書き出したファイルはお客様が管理します）。</p>
+
+      <h2>9. ポリシーの更新</h2>
+      <p>本ポリシーは随時更新されることがあります。更新内容は本ページで公開します。重要な変更がある場合は、アプリのリリースノートでもお知らせします。</p>
+
+      <h2>10. お問い合わせ</h2>
+      <p>本ポリシーについてご質問がある場合は、<a href="support.html">サポートページ</a>からご連絡ください。</p>
+    </div>
+
+    <!-- ============ Français ============ -->
+    <div class="lang-panel" data-lang="fr">
+      <h1>Politique de confidentialité de CarLogs</h1>
+      <p class="version">Version 1.2 (Build 3)</p>
+      <p class="meta">Date d'entrée en vigueur : 2026-09-20</p>
+
+      <p>CarLogs (ci-après « l'application ») est un outil permettant d'enregistrer les pleins de carburant, l'entretien, les contrôles d'huile et les dépenses de votre véhicule personnel. Nous prenons votre vie privée très au sérieux. Cette politique explique comment les informations sont traitées lorsque vous utilisez l'application.</p>
+
+      <h2>1. Informations que nous traitons</h2>
+      <p>L'application ne traite que les données que vous saisissez sur cet appareil :</p>
+      <ul>
+        <li>Relevés de carburant : date, lecture du compteur, volume, coût, note facultative.</li>
+        <li>Relevés d'entretien : date, compteur, catégorie d'entretien, coût, note facultative.</li>
+        <li>Relevés de contrôle d'huile : date, compteur, résultat, quantité d'appoint facultative, note facultative.</li>
+        <li>Relevés de dépenses : date, compteur (facultatif), catégorie, coût, note facultative.</li>
+        <li>Réglages tels que les catégories, la langue de l'interface et la préférence de devise.</li>
+      </ul>
+      <p>L'application ne <strong>collecte pas</strong> votre nom, vos coordonnées, votre localisation précise, vos photos, vos contacts ni aucune autre information personnelle identifiable. Lorsque vous scannez une pompe, la photo est lue sur votre appareil puis abandonnée ; seuls les chiffres que vous confirmez sont enregistrés.</p>
+
+      <h2>2. Stockage des données</h2>
+      <p>Toutes les données sont stockées <strong>uniquement sur votre appareil</strong> dans une base de données SQLite locale à l'intérieur du bac à sable (sandbox) de l'application. Rien n'est envoyé vers un serveur. Vos préférences (langue, devise, sauvegardes) sont également stockées localement sur votre appareil.</p>
+      <p>Conformément aux mécanismes d'iOS, les sauvegardes iTunes/Finder ou iCloud réalisées via votre système peuvent inclure les données locales de l'application. Ces sauvegardes sont contrôlées par les réglages de votre système.</p>
+
+      <h2>3. Utilisation des informations</h2>
+      <p>L'application n'utilise ces données que sur votre appareil pour afficher les listes de relevés, générer des statistiques et des graphiques, calculer la consommation de carburant et planifier des rappels locaux (comme les rappels de contrôle d'huile) selon vos réglages. Tous les calculs sont effectués localement.</p>
+
+      <h2>4. Partage des informations</h2>
+      <p>Nous ne vendons, ne louons ni ne divulguons <strong>jamais</strong> vos données à un tiers. L'application ne contient aucun SDK publicitaire, aucun SDK d'analyse ni aucun code de suivi tiers.</p>
+      <p>Ce n'est que lorsque vous utilisez activement « Exporter la base de données » que l'application génère une copie locale du fichier SQLite à enregistrer ou partager ; lorsque vous utilisez « Importer la base de données », l'application ne fait que lire un fichier que vous avez choisi. Tout transfert de données hors de votre appareil relève entièrement de votre décision.</p>
+
+      <h2>5. Notifications locales</h2>
+      <p>Les rappels locaux, comme les notifications de contrôle d'huile, sont planifiés par le système sur l'appareil et n'impliquent aucune transmission réseau.</p>
+
+      <h2>6. Sécurité des données</h2>
+      <p>Les données sont stockées dans le répertoire sandbox protégé de l'application, accessible uniquement par celle-ci. Nous vous recommandons de sauvegarder régulièrement vos relevés avec la fonction « Exporter la base de données ».</p>
+
+      <h2>7. Confidentialité des enfants</h2>
+      <p>L'application ne s'adresse pas aux enfants de moins de 13 ans et ne collecte pas sciemment d'informations personnelles les concernant.</p>
+
+      <h2>8. Suppression des données</h2>
+      <p>Vous pouvez balayer un relevé vers la gauche pour le supprimer, ou supprimer des catégories dans « Réglages &gt; Catégories ». Désinstaller l'application efface toutes les données locales (les fichiers exportés sont gérés par vous).</p>
+
+      <h2>9. Mises à jour de la politique</h2>
+      <p>Nous pouvons mettre à jour cette politique de temps à autre. Les mises à jour seront publiées sur cette page ; si un changement est important, nous vous en informerons via les notes de version de l'application.</p>
+
+      <h2>10. Contact</h2>
+      <p>Si vous avez des questions sur cette politique, veuillez nous contacter via la <a href="support.html">page d'assistance</a>.</p>
+    </div>
+
+    <!-- ============ Deutsch ============ -->
+    <div class="lang-panel" data-lang="de">
+      <h1>Datenschutzerklärung von CarLogs</h1>
+      <p class="version">Version 1.2 (Build 3)</p>
+      <p class="meta">Gültig ab: 2026-09-20</p>
+
+      <p>CarLogs (im Folgenden „die App") ist ein Werkzeug zur Erfassung von Kraftstofffüllungen, Wartungen, Ölchecks und Ausgaben Ihres persönlichen Fahrzeugs. Ihre Privatsphäre ist uns sehr wichtig. Diese Richtlinie erklärt, wie Informationen bei der Nutzung der App verarbeitet werden.</p>
+
+      <h2>1. Informationen, die wir verarbeiten</h2>
+      <p>Die App verarbeitet ausschließlich Daten, die Sie auf diesem Gerät eingeben:</p>
+      <ul>
+        <li>Kraftstoff-Einträge: Datum, Kilometerstand, Menge, Kosten, optionale Notiz.</li>
+        <li>Wartungs-Einträge: Datum, Kilometerstand, Wartungskategorie, Kosten, optionale Notiz.</li>
+        <li>Ölcheck-Einträge: Datum, Kilometerstand, Ergebnis, optionale Nachfüllmenge, optionale Notiz.</li>
+        <li>Ausgaben-Einträge: Datum, Kilometerstand (optional), Kategorie, Kosten, optionale Notiz.</li>
+        <li>Einstellungen wie Kategorien, Schnittstellensprache und Währungspräferenz.</li>
+      </ul>
+      <p>Die App erhebt <strong>keine</strong> personenbezogenen Daten wie Name, Kontaktdaten, genauen Standort, Fotos, Kontakte oder andere identifizierbare Informationen. Wenn Sie eine Zapfsäule scannen, wird das Foto nur auf Ihrem Gerät gelesen und danach verworfen; gespeichert werden nur die von Ihnen bestätigten Werte.</p>
+
+      <h2>2. Datenspeicherung</h2>
+      <p>Alle Daten werden <strong>nur auf Ihrem Gerät</strong> in einer lokalen SQLite-Datenbank in der Sandbox der App gespeichert. Es wird nichts auf einen Server hochgeladen. Ihre Einstellungen (Sprache, Währung, Backups) werden ebenfalls nur lokal auf Ihrem Gerät gespeichert.</p>
+      <p>Gemäß den iOS-Mechanismen können iTunes/Finder- oder iCloud-Backups, die über Ihr System erstellt werden, die lokalen Daten der App enthalten. Solche Backups werden durch Ihre Systemeinstellungen gesteuert.</p>
+
+      <h2>3. Verwendung der Informationen</h2>
+      <p>Die App verwendet diese Daten nur auf Ihrem Gerät, um Eintragslisten anzuzeigen, Statistiken und Diagramme zu erstellen, den Kraftstoffverbrauch zu berechnen und lokale Erinnerungen (z.&nbsp;B. Ölcheck-Erinnerungen) entsprechend Ihren Einstellungen zu planen. Alle Berechnungen erfolgen lokal.</p>
+
+      <h2>4. Weitergabe von Informationen</h2>
+      <p>Wir verkaufen, vermieten oder offenlegen Ihre Daten <strong>niemals</strong> an Dritte. Die App enthält keine Werbe-SDKs, Analyse-SDKs oder Tracking-Code von Drittanbietern.</p>
+      <p>Nur wenn Sie aktiv „Datenbank exportieren" verwenden, erstellt die App eine lokale Kopie der SQLite-Datei, die Sie speichern oder teilen können; bei „Datenbank importieren" liest die App lediglich eine von Ihnen gewählte Datei. Jede Übertragung von Daten von Ihrem Gerät erfolgt vollständig auf eigene Entscheidung.</p>
+
+      <h2>5. Lokale Benachrichtigungen</h2>
+      <p>Lokale Erinnerungen wie Ölcheck-Benachrichtigungen werden vom System auf dem Gerät geplant und beinhalten keine Netzwerkübertragung.</p>
+
+      <h2>6. Datensicherheit</h2>
+      <p>Die Daten werden in dem geschützten Sandbox-Verzeichnis der App gespeichert, auf das nur die App zugreifen kann. Wir empfehlen, Ihre Einträge regelmäßig mit der Funktion „Datenbank exportieren" zu sichern.</p>
+
+      <h2>7. Datenschutz von Kindern</h2>
+      <p>Die App richtet sich nicht an Kinder unter 13 Jahren und erhebt wissentlich keine persönlichen Daten von Kindern.</p>
+
+      <h2>8. Datenlöschung</h2>
+      <p>Sie können einen Eintrag nach links wischen, um ihn zu löschen, oder Kategorien unter „Einstellungen &gt; Kategorien" entfernen. Das Deinstallieren der App löscht alle lokalen Daten (selbst exportierte Dateien liegen in Ihrer Hand).</p>
+
+      <h2>9. Änderungen der Richtlinie</h2>
+      <p>Wir können diese Richtlinie von Zeit zu Zeit aktualisieren. Aktualisierungen werden auf dieser Seite veröffentlicht; bei wesentlichen Änderungen informieren wir Sie über die Versionshinweise der App.</p>
+
+      <h2>10. Kontakt</h2>
+      <p>Wenn Sie Fragen zu dieser Richtlinie haben, kontaktieren Sie uns bitte über die <a href="support.html">Support-Seite</a>.</p>
+    </div>
+
+    <!-- ============ Italiano ============ -->
+    <div class="lang-panel" data-lang="it">
+      <h1>Informativa sulla privacy di CarLogs</h1>
+      <p class="version">Versione 1.2 (Build 3)</p>
+      <p class="meta">Data di entrata in vigore: 2026-09-20</p>
+
+      <p>CarLogs (di seguito "l'app") è uno strumento per registrare rifornimenti di carburante, manutenzioni, controlli olio e spese del tuo veicolo personale. Prendiamo molto sul serio la tua privacy. Questa informativa spiega come vengono gestite le informazioni durante l'uso dell'app.</p>
+
+      <h2>1. Informazioni che trattiamo</h2>
+      <p>L'app tratta solo i dati che inserisci su questo dispositivo:</p>
+      <ul>
+        <li>Registrazioni carburante: data, lettura contachilometri, volume, costo, nota facoltativa.</li>
+        <li>Registrazioni manutenzione: data, contachilometri, categoria di manutenzione, costo, nota facoltativa.</li>
+        <li>Registrazioni controllo olio: data, contachilometri, esito, quantità rabboccata facoltativa, nota facoltativa.</li>
+        <li>Registrazioni spese: data, contachilometri (facoltativo), categoria, costo, nota facoltativa.</li>
+        <li>Impostazioni quali categorie, lingua dell'interfaccia e preferenza di valuta.</li>
+      </ul>
+      <p>L'app <strong>non</strong> raccoglie nome, dati di contatto, posizione precisa, foto, contatti o altre informazioni personali identificabili. Quando si scansiona una pompa, la foto viene letta sul dispositivo e poi scartata; vengono salvati solo i valori che lei conferma.</p>
+
+      <h2>2. Memorizzazione dei dati</h2>
+      <p>Tutti i dati sono memorizzati <strong>solo sul tuo dispositivo</strong> in un database SQLite locale all'interno della sandbox dell'app. Non viene caricato nulla su alcun server. Anche le tue preferenze (lingua, valuta, backup) sono conservate localmente sul dispositivo.</p>
+      <p>Secondo i meccanismi di iOS, i backup iTunes/Finder o iCloud effettuati tramite il tuo sistema possono includere i dati locali dell'app. Questi backup sono controllati dalle impostazioni di sistema.</p>
+
+      <h2>3. Uso delle informazioni</h2>
+      <p>L'app usa questi dati solo sul tuo dispositivo per mostrare gli elenchi delle registrazioni, generare statistiche e grafici, calcolare il consumo di carburante e pianificare promemoria locali (come quelli del controllo olio) in base alle tue impostazioni. Tutto il calcolo avviene in locale.</p>
+
+      <h2>4. Condivisione delle informazioni</h2>
+      <p><strong>Non</strong> vendiamo, affittiamo né divulghiamo i tuoi dati a terzi. L'app non contiene SDK pubblicitari, SDK analitici o codice di tracciamento di terze parti.</p>
+      <p>Solo quando usi attivamente "Esporta database" l'app genera una copia locale del file SQLite da salvare o condividere; quando usi "Importa database", l'app legge soltanto un file scelto da te. Qualsiasi trasferimento di dati fuori dal dispositivo è interamente una tua decisione.</p>
+
+      <h2>5. Notifiche locali</h2>
+      <p>I promemoria locali, come le notifiche di controllo olio, sono pianificati dal sistema sul dispositivo e non comportano trasmissioni di rete.</p>
+
+      <h2>6. Sicurezza dei dati</h2>
+      <p>I dati sono conservati nella sandbox protetta dell'app, accessibile solo da essa. Ti consigliamo di eseguire backup regolari con la funzione "Esporta database".</p>
+
+      <h2>7. Privacy dei bambini</h2>
+      <p>L'app non è rivolta a minori di 13 anni e non raccoglie consapevolmente informazioni personali dei bambini.</p>
+
+      <h2>8. Eliminazione dei dati</h2>
+      <p>Puoi scorrere verso sinistra su una registrazione per eliminarla, oppure eliminare categorie in "Impostazioni &gt; Categorie". La disinstallazione dell'app cancella tutti i dati locali (i file esportati sono gestiti da te).</p>
+
+      <h2>9. Aggiornamenti dell'informativa</h2>
+      <p>Possiamo aggiornare questa informativa di tanto in tanto. Gli aggiornamenti saranno pubblicati su questa pagina; se la modifica è significativa, ti informeremo tramite le note di rilascio dell'app.</p>
+
+      <h2>10. Contatti</h2>
+      <p>Se hai domande su questa informativa, contattaci tramite la <a href="support.html">pagina di supporto</a>.</p>
+    </div>
+
+    <!-- ============ 한국어 ============ -->
+    <div class="lang-panel" data-lang="ko">
+      <h1>CarLogs 개인정보 처리방침</h1>
+      <p class="version">버전 1.2 (Build 3)</p>
+      <p class="meta">시행일: 2026-09-20</p>
+
+      <p>CarLogs(이하 "본 앱")는 개인 차량의 주유, 정비, 오일 점검, 지출을 기록하기 위한 도구입니다. 우리는 귀하의 개인정보 보호를 매우 중요하게 생각합니다. 본 방침은 앱 이용 중 정보가 어떻게 처리되는지를 설명합니다.</p>
+
+      <h2>1. 처리하는 정보</h2>
+      <p>본 앱은 귀하가 이 기기에 입력한 데이터만 처리합니다.</p>
+      <ul>
+        <li>주유 기록: 날짜, 주행거리(계기판), 주유량, 비용, 선택 메모.</li>
+        <li>정비 기록: 날짜, 주행거리, 정비 카테고리, 비용, 선택 메모.</li>
+        <li>오일 점검 기록: 날짜, 주행거리, 결과, 선택 보충량, 선택 메모.</li>
+        <li>지출 기록: 날짜, 주행거리(선택), 카테고리, 비용, 선택 메모.</li>
+        <li>카테고리, 인터페이스 언어, 통화 설정 등.</li>
+      </ul>
+      <p>본 앱은 이름, 연락처 정보, 정확한 위치, 사진, 연락처 등 개인을 식별할 수 있는 정보를 <strong>수집하지 않습니다</strong>. 주유기를 스캔할 때 사진은 기기에서만 읽고 곧바로 버립니다. 저장되는 것은 사용자가 확인한 수치뿐입니다.</p>
+
+      <h2>2. 데이터 저장</h2>
+      <p>모든 데이터는 앱의 샌드박스 내 로컬 SQLite 데이터베이스로 <strong>귀하의 기기에만</strong> 저장되며 어떤 서버에도 업로드되지 않습니다. 환경설정(언어, 통화 등)도 기기에만 저장됩니다.</p>
+      <p>iOS 메커니즘에 따라 시스템을 통해 이루어지는 iTunes/Finder 또는 iCloud 백업에는 본 앱의 로컬 데이터가 포함될 수 있습니다. 이러한 백업은 시스템 설정에 의해 관리됩니다.</p>
+
+      <h2>3. 정보의 사용</h2>
+      <p>본 앱은 기록 목록 표시, 통계와 차트 생성, 연비 계산, 설정에 따른 로컬 알림(오일 점검 알림 등) 예약을 위해 이 데이터를 기기에서만 사용합니다. 모든 계산은 로컬에서 수행됩니다.</p>
+
+      <h2>4. 정보의 공유</h2>
+      <p>우리는 귀하의 데이터를 제3자에게 판매, 임대 또는 공개하지 <strong>않습니다</strong>. 본 앱에는 광고 SDK, 분석 SDK 또는 제3자 추적 코드가 포함되어 있지 않습니다.</p>
+      <p>"데이터베이스 내보내기"를 직접 사용하는 경우에만 앱이 저장하거나 공유할 SQLite 파일의 로컬 복사본을 생성합니다. "데이터베이스 가져오기"를 사용하면 귀하가 선택한 파일을 읽을 뿐입니다. 기기 밖으로의 데이터 전송은 전적으로 귀하의 결정에 따릅니다.</p>
+
+      <h2>5. 로컬 알림</h2>
+      <p>오일 점검 알림 같은 로컬 알림은 시스템이 기기에서 예약하며 네트워크 전송이 없습니다.</p>
+
+      <h2>6. 데이터 보안</h2>
+      <p>데이터는 보호된 앱 샌드박스 디렉터리에 저장되며 본 앱만 접근할 수 있습니다. "데이터베이스 내보내기" 기능으로 정기적으로 백업할 것을 권장합니다.</p>
+
+      <h2>7. 아동의 개인정보 보호</h2>
+      <p>본 앱은 13세 미만의 아동을 대상으로 하지 않으며, 아동의 개인정보를 고의로 수집하지 않습니다.</p>
+
+      <h2>8. 데이터 삭제</h2>
+      <p>기록을 왼쪽으로 밀어 삭제하거나 "설정 &gt; 카테고리"에서 카테고리를 삭제할 수 있습니다. 앱을 삭제하면 모든 로컬 데이터가 지워집니다(내보낸 파일은 귀하가 관리합니다).</p>
+
+      <h2>9. 방침의 갱신</h2>
+      <p>본 방침은 수시로 업데이트될 수 있습니다. 업데이트는 이 페이지에 게시되며, 중요한 변경이 있는 경우 앱 릴리스 노트를 통해 알려드립니다.</p>
+
+      <h2>10. 문의</h2>
+      <p>본 방침에 대해 질문이 있으시면 <a href="support.html">지원 페이지</a>를 통해 문의해 주세요.</p>
+    </div>
+
+    <!-- ============ Polski ============ -->
+    <div class="lang-panel" data-lang="pl">
+      <h1>Polityka prywatności CarLogs</h1>
+      <p class="version">Wersja 1.2 (Build 3)</p>
+      <p class="meta">Data wejścia w życie: 2026-09-20</p>
+
+      <p>CarLogs (dalej „aplikacja") to narzędzie do rejestrowania tankowań paliwa, serwisu, kontroli oleju i wydatków Twojego pojazdu. Poważnie traktujemy Twoją prywatność. Niniejsza polityka wyjaśnia, w jaki sposób informacje są przetwarzane podczas korzystania z aplikacji.</p>
+
+      <h2>1. Informacje, które przetwarzamy</h2>
+      <p>Aplikacja przetwarza wyłącznie dane wprowadzone przez Ciebie na tym urządzeniu:</p>
+      <ul>
+        <li>Wpisy paliwa: data, wskazanie licznika, ilość, koszt, opcjonalna notatka.</li>
+        <li>Wpisy serwisu: data, przebieg, kategoria serwisu, koszt, opcjonalna notatka.</li>
+        <li>Wpisy kontroli oleju: data, przebieg, wynik, opcjonalna ilość uzupełnienia, opcjonalna notatka.</li>
+        <li>Wpisy wydatków: data, przebieg (opcjonalnie), kategoria, koszt, opcjonalna notatka.</li>
+        <li>Ustawienia, takie jak kategorie, język interfejsu i preferencja waluty.</li>
+      </ul>
+      <p>Aplikacja <strong>nie zbiera</strong> Twojego imienia, danych kontaktowych, dokładnej lokalizacji, zdjęć, kontaktów ani żadnych innych danych umożliwiających identyfikację. Gdy skanujesz dystrybutor, zdjęcie jest odczytywane na urządzeniu i odrzucane; zapisywane są tylko potwierdzone przez Ciebie wartości.</p>
+
+      <h2>2. Przechowywanie danych</h2>
+      <p>Wszystkie dane są przechowywane <strong>wyłącznie na Twoim urządzeniu</strong> w lokalnej bazie SQLite w piaskownicy aplikacji. Nic nie jest wysyłane na żaden serwer. Twoje preferencje (język, waluta, kopie zapasowe) są również przechowywane lokalnie.</p>
+      <p>Zgodnie z mechanizmami iOS, kopie zapasowe iTunes/Finder lub iCloud wykonane przez Twój system mogą zawierać dane lokalne aplikacji. Takie kopie są kontrolowane przez ustawienia systemowe.</p>
+
+      <h2>3. Jak wykorzystujemy informacje</h2>
+      <p>Aplikacja używa tych danych tylko na Twoim urządzeniu, aby wyświetlać listy wpisów, tworzyć statystyki i wykresy, obliczać zużycie paliwa oraz planować lokalne przypomnienia (np. o kontroli oleju) zgodnie z ustawieniami. Wszystkie obliczenia odbywają się lokalnie.</p>
+
+      <h2>4. Udostępnianie informacji</h2>
+      <p><strong>Nie</strong> sprzedajemy, nie wynajmujemy ani nie ujawniamy Twoich danych żadnej stronie trzeciej. Aplikacja nie zawiera SDK reklamowych, SDK analitycznych ani kodów śledzenia stron trzecich.</p>
+      <p>Tylko gdy aktywnie używasz „Eksportuj bazę danych", aplikacja tworzy lokalną kopię pliku SQLite do zapisania lub udostępnienia; przy „Importuj bazę danych" aplikacja jedynie odczytuje wybrany przez Ciebie plik. Przekazywanie danych poza urządzenie jest w całości Twoją decyzją.</p>
+
+      <h2>5. Powiadomienia lokalne</h2>
+      <p>Lokalne przypomnienia, takie jak powiadomienia o kontroli oleju, są planowane przez system na urządzeniu i nie wiążą się z transmisją sieciową.</p>
+
+      <h2>6. Bezpieczeństwo danych</h2>
+      <p>Dane są przechowywane w chronionym katalogu piaskownicy aplikacji, dostępnym tylko dla niej. Zalecamy regularne wykonywanie kopii zapasowych funkcją „Eksportuj bazę danych".</p>
+
+      <h2>7. Prywatność dzieci</h2>
+      <p>Aplikacja nie jest skierowana do dzieci poniżej 13 roku życia i nie gromadzi świadomie ich danych osobowych.</p>
+
+      <h2>8. Usuwanie danych</h2>
+      <p>Możesz przesunąć wpis w lewo, aby go usunąć, lub usunąć kategorie w „Ustawieniach &gt; Kategorie". Odinstalowanie aplikacji usuwa wszystkie lokalne dane (wyeksportowane pliki pozostają pod Twoją opieką).</p>
+
+      <h2>9. Aktualizacje polityki</h2>
+      <p>Niniejsza polityka może być od czasu do czasu aktualizowana. Aktualizacje będą publikowane na tej stronie; jeśli zmiana jest istotna, poinformujemy Cię przez notatki o wydaniu aplikacji.</p>
+
+      <h2>10. Kontakt</h2>
+      <p>Jeśli masz pytania dotyczące tej polityki, skontaktuj się z nami przez <a href="support.html">stronę wsparcia</a>.</p>
+    </div>
+
+    <!-- ============ Português ============ -->
+    <div class="lang-panel" data-lang="pt">
+      <h1>Política de Privacidade do CarLogs</h1>
+      <p class="version">Versão 1.2 (Build 3)</p>
+      <p class="meta">Data de entrada em vigor: 2026-09-20</p>
+
+      <p>O CarLogs (doravante "o aplicativo") é uma ferramenta para registrar abastecimentos, manutenções, verificações de óleo e despesas do seu veículo pessoal. Levamos sua privacidade muito a sério. Esta política explica como as informações são tratadas enquanto você usa o aplicativo.</p>
+
+      <h2>1. Informações que processamos</h2>
+      <p>O aplicativo processa apenas os dados que você insere neste dispositivo:</p>
+      <ul>
+        <li>Registros de combustível: data, leitura do odômetro, volume, custo, nota opcional.</li>
+        <li>Registros de manutenção: data, odômetro, categoria de manutenção, custo, nota opcional.</li>
+        <li>Registros de verificação de óleo: data, odômetro, resultado, quantidade completada opcional, nota opcional.</li>
+        <li>Registros de despesas: data, odômetro (opcional), categoria, custo, nota opcional.</li>
+        <li>Configurações como categorias, idioma da interface e preferência de moeda.</li>
+      </ul>
+      <p>O aplicativo <strong>não</strong> coleta seu nome, informações de contato, localização precisa, fotos, contatos ou qualquer outra informação pessoal identificável. Ao digitalizar uma bomba, a fotografia é lida no dispositivo e descartada; apenas os valores que você confirmar são guardados.</p>
+
+      <h2>2. Armazenamento de dados</h2>
+      <p>Todos os dados são armazenados <strong>somente no seu dispositivo</strong> em um banco de dados SQLite local no sandbox do aplicativo. Nada é enviado a nenhum servidor. Suas preferências (idioma, moeda, backups) também ficam armazenadas localmente no dispositivo.</p>
+      <p>De acordo com os mecanismos do iOS, os backups do iTunes/Finder ou do iCloud feitos pelo seu sistema podem incluir os dados locais do aplicativo. Esses backups são controlados pelas configurações do seu sistema.</p>
+
+      <h2>3. Como usamos as informações</h2>
+      <p>O aplicativo usa esses dados apenas no seu dispositivo para exibir listas de registros, gerar estatísticas e gráficos, calcular o consumo de combustível e agendar lembretes locais (como verificações de óleo) de acordo com suas configurações. Todo o cálculo é feito localmente.</p>
+
+      <h2>4. Compartilhamento de informações</h2>
+      <p>Não vendemos, alugamos nem divulgamos seus dados a terceiros. O aplicativo não contém SDKs de publicidade, SDKs de análise nem código de rastreamento de terceiros.</p>
+      <p>Somente quando você usa ativamente "Exportar banco de dados" o aplicativo gera uma cópia local do arquivo SQLite para você salvar ou compartilhar; ao usar "Importar banco de dados", o aplicativo apenas lê um arquivo escolhido por você. Qualquer transferência de dados para fora do dispositivo é inteiramente sua decisão.</p>
+
+      <h2>5. Notificações locais</h2>
+      <p>Lembretes locais, como as notificações de verificação de óleo, são agendados pelo sistema no dispositivo e não envolvem transmissão pela rede.</p>
+
+      <h2>6. Segurança dos dados</h2>
+      <p>Os dados são armazenados no diretório protegido do sandbox do aplicativo, acessível somente a ele. Recomendamos fazer backups regulares com a função "Exportar banco de dados".</p>
+
+      <h2>7. Privacidade de crianças</h2>
+      <p>O aplicativo não se destina a crianças menores de 13 anos e não coleta conscientemente informações pessoais de crianças.</p>
+
+      <h2>8. Exclusão de dados</h2>
+      <p>Você pode deslizar um registro para a esquerda para excluí-lo, ou remover categorias em "Ajustes &gt; Categorias". Desinstalar o aplicativo limpa todos os dados locais (os arquivos exportados são gerenciados por você).</p>
+
+      <h2>9. Atualizações da política</h2>
+      <p>Podemos atualizar esta política de tempos em tempos. As atualizações serão publicadas nesta página; se uma mudança for significativa, avisaremos você pelas notas de versão do aplicativo.</p>
+
+      <h2>10. Contato</h2>
+      <p>Se você tiver dúvidas sobre esta política, entre em contato pela <a href="support.html">página de suporte</a>.</p>
+    </div>
+
+    <!-- ============ Nederlands ============ -->
+    <div class="lang-panel" data-lang="nl">
+      <h1>Privacybeleid van CarLogs</h1>
+      <p class="version">Versie 1.2 (Build 3)</p>
+      <p class="meta">Ingangsdatum: 2026-09-20</p>
+
+      <p>CarLogs (hierna "de app") is een hulpmiddel voor het registreren van tankbeurten, onderhoud, oliecontroles en uitgaven van uw persoonlijke voertuig. Wij nemen uw privacy zeer serieus. Dit beleid legt uit hoe informatie wordt verwerkt terwijl u de app gebruikt.</p>
+
+      <h2>1. Informatie die wij verwerken</h2>
+      <p>De app verwerkt uitsluitend gegevens die u op dit apparaat invoert:</p>
+      <ul>
+        <li>Brandstofregistraties: datum, kilometertellerstand, hoeveelheid, kosten, optionele notitie.</li>
+        <li>Onderhoudsregistraties: datum, kilometerteller, onderhoudscategorie, kosten, optionele notitie.</li>
+        <li>Oliecontroleregistraties: datum, kilometerteller, resultaat, optionele bijgevulde hoeveelheid, optionele notitie.</li>
+        <li>Uitgavenregistraties: datum, kilometerteller (optioneel), categorie, kosten, optionele notitie.</li>
+        <li>Instellingen zoals categorieën, interface-taal en valuta-voorkeur.</li>
+      </ul>
+      <p>De app verzamelt <strong>geen</strong> naam, contactgegevens, precieze locatie, foto's, contacten of andere persoonlijk identificeerbare informatie. Wanneer je een pomp scant, wordt de foto alleen op je toestel gelezen en daarna weggegooid; alleen de cijfers die je bevestigt worden opgeslagen.</p>
+
+      <h2>2. Gegevensopslag</h2>
+      <p>Alle gegevens worden <strong>uitsluitend op uw apparaat</strong> opgeslagen in een lokale SQLite-database binnen de sandbox van de app. Er wordt niets naar een server geüpload. Uw voorkeuren (taal, valuta, back-ups) worden ook lokaal op uw apparaat opgeslagen.</p>
+      <p>Volgens de mechanismen van iOS kunnen iTunes/Finder- of iCloud-back-ups die via uw systeem worden gemaakt de lokale gegevens van de app bevatten. Dergelijke back-ups worden beheerd via uw systeeminstellingen.</p>
+
+      <h2>3. Hoe wij informatie gebruiken</h2>
+      <p>De app gebruikt deze gegevens alleen op uw apparaat om registratielijsten te tonen, statistieken en grafieken te genereren, het brandstofverbruik te berekenen en lokale herinneringen (zoals oliecontroles) in te plannen volgens uw instellingen. Alle berekeningen gebeuren lokaal.</p>
+
+      <h2>4. Delen van informatie</h2>
+      <p>Wij verkopen, verhuren of geven uw gegevens <strong>nooit</strong> aan derden. De app bevat geen advertentie-SDK's, analyse-SDK's of trackingcode van derden.</p>
+      <p>Alleen wanneer u actief "Database exporteren" gebruikt, maakt de app een lokale kopie van het SQLite-bestand om op te slaan of te delen; bij "Database importeren" leest de app alleen een door u gekozen bestand. Elke overdracht van gegevens van uw apparaat is geheel uw eigen beslissing.</p>
+
+      <h2>5. Lokale meldingen</h2>
+      <p>Lokale herinneringen, zoals oliecontrole-meldingen, worden door het systeem op het apparaat ingepland en gaan niet via het netwerk.</p>
+
+      <h2>6. Gegevensbeveiliging</h2>
+      <p>Gegevens worden opgeslagen in de beschermde sandbox-map van de app, die alleen voor de app toegankelijk is. Wij raden aan regelmatig back-ups te maken met de functie "Database exporteren".</p>
+
+      <h2>7. Privacy van kinderen</h2>
+      <p>De app is niet gericht op kinderen jonger dan 13 jaar en verzamelt niet bewust persoonlijke gegevens van kinderen.</p>
+
+      <h2>8. Verwijderen van gegevens</h2>
+      <p>U kunt een registratie naar links vegen om deze te verwijderen, of categorieën verwijderen onder "Instellingen &gt; Categorieën". Het verwijderen van de app wist alle lokale gegevens (geëxporteerde bestanden beheert u zelf).</p>
+
+      <h2>9. Beleidswijzigingen</h2>
+      <p>Wij kunnen dit beleid van tijd tot tijd bijwerken. Wijzigingen worden op deze pagina gepubliceerd; als een wijziging ingrijpend is, informeren wij u via de release-opmerkingen van de app.</p>
+
+      <h2>10. Contact</h2>
+      <p>Als u vragen heeft over dit beleid, neem dan contact met ons op via de <a href="support.html">supportpagina</a>.</p>
+    </div>
   </div>
 
   <script>
     (function () {
-      var en = document.getElementById('en');
-      var zh = document.getElementById('zh');
-      var enBtn = document.getElementById('enBtn');
-      var zhBtn = document.getElementById('zhBtn');
-      function show(lang) {
-        en.style.display = lang === 'en' ? 'block' : 'none';
-        zh.style.display = lang === 'zh' ? 'block' : 'none';
-        enBtn.classList.toggle('active', lang === 'en');
-        zhBtn.classList.toggle('active', lang === 'zh');
+      var langs = [
+        { code: 'en', label: 'English' },
+        { code: 'zh', label: '简体中文' },
+        { code: 'es', label: 'Español' },
+        { code: 'ja', label: '日本語' },
+        { code: 'fr', label: 'Français' },
+        { code: 'de', label: 'Deutsch' },
+        { code: 'it', label: 'Italiano' },
+        { code: 'ko', label: '한국어' },
+        { code: 'pl', label: 'Polski' },
+        { code: 'pt', label: 'Português' },
+        { code: 'nl', label: 'Nederlands' }
+      ];
+      var bar = document.getElementById('langBar');
+      var panels = document.querySelectorAll('.lang-panel');
+      function show(code) {
+        panels.forEach(function (p) { p.style.display = p.getAttribute('data-lang') === code ? 'block' : 'none'; });
+        bar.querySelectorAll('a').forEach(function (a) { a.classList.toggle('active', a.getAttribute('data-lang') === code); });
       }
-      enBtn.addEventListener('click', function (e) { e.preventDefault(); show('en'); });
-      zhBtn.addEventListener('click', function (e) { e.preventDefault(); show('zh'); });
+      langs.forEach(function (l) {
+        var a = document.createElement('a');
+        a.href = '#';
+        a.setAttribute('data-lang', l.code);
+        a.textContent = l.label;
+        a.addEventListener('click', function (e) { e.preventDefault(); show(l.code); });
+        bar.appendChild(a);
+      });
+      show('en');
     })();
   </script>
 </body>

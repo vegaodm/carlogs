@@ -14,27 +14,30 @@
     p, li { font-size: 0.95em; color: #3a3a3c; }
     a { color: #0066cc; text-decoration: none; }
     ul { padding-left: 20px; }
-    .lang { margin: 0 0 16px; font-size: 0.9em; color: #6e6e73; }
-    .lang a { margin-right: 8px; padding: 4px 10px; border-radius: 6px; }
+    .lang { margin: 0 0 16px; font-size: 0.9em; color: #6e6e73; line-height: 2; }
+    .version { color: #6e6e73; font-size: 0.85em; margin: 0 0 1em; }
+    .lang a { margin-right: 8px; padding: 4px 10px; border-radius: 6px; white-space: nowrap; }
     .lang a.active { background: #0066cc; color: #fff; }
     .lang a:not(.active) { color: #0066cc; }
-    .hidden-zh { display: none; }
+    .lang-panel { display: none; }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <p class="lang">
-      <a href="#" id="enBtn" class="active">English</a>
-      <a href="#" id="zhBtn">中文</a>
-    </p>
+    <p class="lang" id="langBar"></p>
 
     <!-- ============ English (default) ============ -->
-    <div id="en">
+    <div class="lang-panel" data-lang="en">
       <h1>CarLogs Help &amp; Support</h1>
+      <p class="version">Version 1.2 (Build 3)</p>
 
-      <p>CarLogs is an app for recording vehicle fuel fills, maintenance, oil checks, and expenses. It supports both English and Chinese interfaces, and all data is stored entirely on your device.</p>
+      <p>CarLogs is an app for recording vehicle fuel fills, maintenance, oil checks, and expenses. It supports 11 languages (English, 简体中文, Español, 日本語, Français, Deutsch, Italiano, 한국어, Polski, Português, Nederlands), and all data is stored entirely on your device.</p>
 
       <h2>Frequently Asked Questions</h2>
+
+      <h3>How do I read a meter from a photo?</h3>
+      <p>On the Record tab, tap "Take Photo" and photograph the meter, or pick one with "Choose Photo". The figures are read on your device and the photo is not kept. If a reading looks wrong, drag the box over the display you filled and tap "Re-read": the box is what names the display, and the app grows it only as far as the reading needs.</p>
+      <p>The meter reader has been measured on Chinese forecourts. Displays with English labels, gallons, or a comma as the decimal separator have not been measured yet, so check the figures before saving — nothing is recorded until you save the fill.</p>
 
       <h3>How do I back up my data?</h3>
       <p>Go to "Settings &gt; Data &gt; Export Database". The app will prepare a SQLite database file that you can save or share to any location (such as iCloud Drive, the Files app, AirDrop, or a message).</p>
@@ -43,7 +46,7 @@
       <p>Go to "Settings &gt; Data &gt; Import Database" and choose a previously exported file. Import will replace all existing data, so please export a backup first.</p>
 
       <h3>How do I change the interface language?</h3>
-      <p>Go to "Settings &gt; Language" and choose "English" or "简体中文". The change takes effect immediately.</p>
+      <p>Go to "Settings &gt; Language" and choose among all 11 languages. The change takes effect immediately.</p>
 
       <h3>How do I delete a record?</h3>
       <p>In the Records list, swipe left on a record and tap "Delete". Tap any record to edit it.</p>
@@ -61,13 +64,18 @@
       </ul>
     </div>
 
-    <!-- ============ 中文 ============ -->
-    <div id="zh" class="hidden-zh">
+    <!-- ============ 简体中文 ============ -->
+    <div class="lang-panel" data-lang="zh">
       <h1>CarLogs 帮助与支持</h1>
+      <p class="version">版本 1.2（Build 3）</p>
 
-      <p>CarLogs 是一款记录车辆加油、保养、机油检查与费用支出的应用，支持英文与中文界面，数据完全存储在您的设备本机。</p>
+      <p>CarLogs 是一款记录车辆加油、保养、机油检查与费用支出的应用，支持 11 种语言（English、简体中文、Español、日本語、Français、Deutsch、Italiano、한국어、Polski、Português、Nederlands），数据完全存储在您的设备本机。</p>
 
       <h2>常见问题</h2>
+
+      <h3>怎样通过拍照读取加油机？</h3>
+      <p>在"记录"页点"拍照"拍下加油机，或用"从相册选择"挑一张照片。数字在本机识别，照片不会被保留。如果读数不对，把框拖到您加油的那块屏上，再点"重新识别"：框用来指定读哪块屏，App 只会按需要把框向外扩一点。</p>
+      <p>读数识别目前是在中文加油机上实测的。英文标牌、加仑、以及用逗号作小数点的显示屏尚未实测，保存前请核对数字——在您保存这笔加油记录之前，不会写入任何数据。</p>
 
       <h3>如何备份数据？</h3>
       <p>进入"设置"→"数据"→"导出数据库"。系统会生成一份 SQLite 数据库文件，您可以选择保存或分享到其他位置（如 iCloud 云盘、文件 App、隔空投送或发送给好友）。</p>
@@ -76,7 +84,7 @@
       <p>进入"设置"→"数据"→"导入数据库"，选择之前导出的文件即可。导入会替换全部现有数据，请务必提前导出备份。</p>
 
       <h3>如何切换界面语言？</h3>
-      <p>进入"设置"→"语言"，可选择"English"或"简体中文"，切换即时生效。</p>
+      <p>进入"设置"→"语言"，可在全部 11 种语言中选择，切换即时生效。</p>
 
       <h3>如何删除一条记录？</h3>
       <p>在"记录"列表中对某条记录左滑，点击"删除"即可。点按记录可编辑修改内容。</p>
@@ -93,22 +101,380 @@
         <li>开发团队邮箱：<a href="mailto:vegaodm@outlook.com">vegaodm@outlook.com</a></li>
       </ul>
     </div>
+
+    <!-- ============ Español ============ -->
+    <div class="lang-panel" data-lang="es">
+      <h1>Ayuda y soporte de CarLogs</h1>
+      <p class="version">Versión 1.2 (Build 3)</p>
+
+      <p>CarLogs es una aplicación para registrar repostajes de combustible, mantenimiento, revisiones de aceite y gastos del vehículo. Admite 11 idiomas (English, 简体中文, Español, 日本語, Français, Deutsch, Italiano, 한국어, Polski, Português, Nederlands) y todos los datos se almacenan íntegramente en su dispositivo.</p>
+
+      <h2>Preguntas frecuentes</h2>
+
+      <h3>¿Cómo leo un surtidor desde una foto?</h3>
+      <p>En la pestaña "Registrar", toque "Hacer foto" y fotografíe el surtidor, o elija una con "Elegir foto". Las cifras se leen en su dispositivo y la foto no se conserva. Si una lectura es incorrecta, arrastre el recuadro sobre la pantalla que utilizó y toque "Releer": el recuadro indica la pantalla, y la app solo lo amplía lo necesario.</p>
+      <p>El lector se ha medido en gasolineras chinas. Las pantallas con rótulos en inglés, galones o coma decimal aún no se han medido, así que revise las cifras antes de guardar: no se registra nada hasta que guarde el repostaje.</p>
+
+      <h3>¿Cómo hago una copia de seguridad?</h3>
+      <p>Vaya a "Ajustes &gt; Datos &gt; Exportar base de datos". La aplicación preparará un archivo de base de datos SQLite que podrá guardar o compartir en cualquier lugar (como iCloud Drive, la app Archivos, AirDrop o un mensaje).</p>
+
+      <h3>¿Cómo restauro o migro mis datos?</h3>
+      <p>Vaya a "Ajustes &gt; Datos &gt; Importar base de datos" y elija un archivo exportado anteriormente. La importación reemplazará todos los datos existentes; exporte una copia antes.</p>
+
+      <h3>¿Cómo cambio el idioma de la interfaz?</h3>
+      <p>Vaya a "Ajustes &gt; Idioma" y elija entre los 11 idiomas disponibles. El cambio se aplica al instante.</p>
+
+      <h3>¿Cómo elimino un registro?</h3>
+      <p>En la lista de Registros, deslice hacia la izquierda sobre un registro y toque "Eliminar". Toque cualquier registro para editarlo.</p>
+
+      <h3>¿Cómo funciona el recordatorio de revisión de aceite?</h3>
+      <p>La aplicación programa una notificación del sistema 25 días después de su mantenimiento o revisión de aceite más reciente. Cuando el consumo de aceite se aproxima a 1000 ml, la estadística "Rellenos de aceite" y la tarjeta de estado de aceite le avisarán.</p>
+
+      <h3>¿Cómo elimino todos los datos de la aplicación?</h3>
+      <p>Desinstalar la aplicación borra todos los registros locales. Exporte una copia antes para no perder datos.</p>
+
+      <h2>Contacto</h2>
+      <p>Si estas respuestas no resuelven su problema, póngase en contacto y responderemos lo antes posible:</p>
+      <ul>
+        <li>Correo de soporte: <a href="mailto:vegaodm@outlook.com">vegaodm@outlook.com</a></li>
+      </ul>
+    </div>
+
+    <!-- ============ 日本語 ============ -->
+    <div class="lang-panel" data-lang="ja">
+      <h1>CarLogs ヘルプとサポート</h1>
+      <p class="version">バージョン 1.2 (Build 3)</p>
+
+      <p>CarLogs は、車両の給油、メンテナンス、オイルチェック、出費を記録するためのアプリです。11言語（English、简体中文、Español、日本語、Français、Deutsch、Italiano、한국어、Polski、Português、Nederlands）に対応しており、すべてのデータは完全にデバイス上に保存されます。</p>
+
+      <h2>よくある質問</h2>
+
+      <h3>写真から給油機の数値を読み取るには？</h3>
+      <p>「記録」タブで「撮影」をタップして給油機を写すか、「写真を選択」で写真を選びます。数値は端末内で読み取り、写真は保存しません。読み取りが違う場合は、給油した画面に枠をドラッグして「再読み取り」をタップしてください。枠が読む画面を指定するもので、アプリは必要な分だけ枠を広げます。</p>
+      <p>読み取りは中国の給油機で検証しています。英語の表示、ガロン、小数点にコンマを使う画面はまだ検証していないため、保存前に数値を確認してください。給油記録を保存するまで何も書き込まれません。</p>
+
+      <h3>データをバックアップするにはどうすればよいですか？</h3>
+      <p>「設定 &gt; データ &gt; データベースを書き出す」を開きます。アプリが SQLite データベースファイルを準備するので、任意の場所（iCloud ドライブ、ファイル App、AirDrop、メッセージなど）に保存・共有できます。</p>
+
+      <h3>データを復元または移行するには？</h3>
+      <p>「設定 &gt; データ &gt; データベースを読み込む」を開き、以前に書き出したファイルを選択します。読み込むと既存のデータはすべて置き換えられるため、あらかじめバックアップを書き出してください。</p>
+
+      <h3>インターフェース言語を変更するには？</h3>
+      <p>「設定 &gt; 言語」から、全11言語の中から選択できます。変更はすぐに反映されます。</p>
+
+      <h3>記録を削除するには？</h3>
+      <p>「記録」リストで記録を左スワイプし、「削除」をタップします。記録をタップすると編集できます。</p>
+
+      <h3>オイルチェックのリマインダーはどのように機能しますか？</h3>
+      <p>アプリは、最後のメンテナンスまたはオイルチェックから25日後にシステム通知をスケジュールします。オイル消費量が約1000 ml に達すると、「オイル補充」の統計とオイル状態カードが警告します。</p>
+
+      <h3>すべてのアプリデータを削除するには？</h3>
+      <p>アプリをアンインストールすると、ローカルのすべての記録が消去されます。データを失わないよう、先にバックアップを書き出してください。</p>
+
+      <h2>お問い合わせ</h2>
+      <p>上記で問題が解決しない場合は、以下の方法でご連絡ください。できるだけ早く返信します。</p>
+      <ul>
+        <li>サポートメール：<a href="mailto:vegaodm@outlook.com">vegaodm@outlook.com</a></li>
+      </ul>
+    </div>
+
+    <!-- ============ Français ============ -->
+    <div class="lang-panel" data-lang="fr">
+      <h1>Aide et assistance de CarLogs</h1>
+      <p class="version">Version 1.2 (Build 3)</p>
+
+      <p>CarLogs est une application pour enregistrer les pleins de carburant, l'entretien, les contrôles d'huile et les dépenses de votre véhicule. Elle prend en charge 11 langues (English, 简体中文, Español, 日本語, Français, Deutsch, Italiano, 한국어, Polski, Português, Nederlands) et toutes les données sont intégralement stockées sur votre appareil.</p>
+
+      <h2>Questions fréquentes</h2>
+
+      <h3>Comment lire une pompe à partir d'une photo ?</h3>
+      <p>Dans l'onglet « Relevés », touchez « Prendre une photo » et photographiez la pompe, ou choisissez une photo avec « Choisir une photo ». Les chiffres sont lus sur votre appareil et la photo n'est pas conservée. Si une lecture est erronée, faites glisser le cadre sur l'écran utilisé puis touchez « Relire » : le cadre désigne l'écran, et l'app ne l'élargit que si nécessaire.</p>
+      <p>Le lecteur a été mesuré sur des stations chinoises. Les écrans à libellés anglais, en gallons ou à virgule décimale n'ont pas encore été mesurés : vérifiez les chiffres avant d'enregistrer — rien n'est enregistré tant que vous n'enregistrez pas le plein.</p>
+
+      <h3>Comment sauvegarder mes données ?</h3>
+      <p>Allez dans « Réglages &gt; Données &gt; Exporter la base de données ». L'application préparera un fichier de base de données SQLite que vous pourrez enregistrer ou partager vers n'importe quel endroit (iCloud Drive, l'app Fichiers, AirDrop, un message, etc.).</p>
+
+      <h3>Comment restaurer ou migrer mes données ?</h3>
+      <p>Allez dans « Réglages &gt; Données &gt; Importer la base de données » et choisissez un fichier précédemment exporté. L'importation remplacera toutes les données existantes : exportez d'abord une sauvegarde.</p>
+
+      <h3>Comment changer la langue de l'interface ?</h3>
+      <p>Allez dans « Réglages &gt; Langue » et choisissez parmi les 11 langues disponibles. Le changement prend effet immédiatement.</p>
+
+      <h3>Comment supprimer un relevé ?</h3>
+      <p>Dans la liste des Relevés, balayez un relevé vers la gauche et touchez « Supprimer ». Touchez un relevé pour le modifier.</p>
+
+      <h3>Comment fonctionne le rappel de contrôle d'huile ?</h3>
+      <p>L'application planifie une notification système 25 jours après votre dernier entretien ou contrôle d'huile. Lorsque la consommation d'huile approche 1000 ml, la statistique « Appoints d'huile » et la carte de statut de l'huile vous avertiront.</p>
+
+      <h3>Comment supprimer toutes les données de l'application ?</h3>
+      <p>Désinstaller l'application efface tous les relevés locaux. Exportez d'abord une sauvegarde pour éviter toute perte.</p>
+
+      <h2>Contact</h2>
+      <p>Si ces réponses ne résolvent pas votre problème, contactez-nous et nous répondrons dès que possible :</p>
+      <ul>
+        <li>E-mail d'assistance : <a href="mailto:vegaodm@outlook.com">vegaodm@outlook.com</a></li>
+      </ul>
+    </div>
+
+    <!-- ============ Deutsch ============ -->
+    <div class="lang-panel" data-lang="de">
+      <h1>Hilfe und Support für CarLogs</h1>
+      <p class="version">Version 1.2 (Build 3)</p>
+
+      <p>CarLogs ist eine App zur Erfassung von Kraftstofffüllungen, Wartungen, Ölchecks und Ausgaben Ihres Fahrzeugs. Sie unterstützt 11 Sprachen (English, 简体中文, Español, 日本語, Français, Deutsch, Italiano, 한국어, Polski, Português, Nederlands), und alle Daten werden vollständig auf Ihrem Gerät gespeichert.</p>
+
+      <h2>Häufig gestellte Fragen</h2>
+
+      <h3>Wie lese ich eine Zapfsäule aus einem Foto?</h3>
+      <p>Tippen Sie im Tab „Einträge" auf „Foto aufnehmen" und fotografieren Sie die Zapfsäule, oder wählen Sie eines mit „Foto wählen". Die Werte werden auf Ihrem Gerät gelesen und das Foto wird nicht behalten. Stimmt ein Wert nicht, ziehen Sie den Rahmen über das Display, an dem Sie getankt haben, und tippen Sie auf „Erneut lesen": Der Rahmen benennt das Display, und die App vergrößert ihn nur so weit wie nötig.</p>
+      <p>Der Leser wurde an chinesischen Zapfsäulen gemessen. Displays mit englischen Beschriftungen, Gallonen oder Komma als Dezimaltrennzeichen wurden noch nicht gemessen — prüfen Sie die Werte vor dem Speichern; gespeichert wird erst, wenn Sie den Tankvorgang speichern.</p>
+
+      <h3>Wie sichere ich meine Daten?</h3>
+      <p>Gehen Sie zu „Einstellungen &gt; Daten &gt; Datenbank exportieren". Die App erstellt eine SQLite-Datei, die Sie an einem beliebigen Ort speichern oder teilen können (z.&nbsp;B. iCloud Drive, die Dateien-App, AirDrop oder eine Nachricht).</p>
+
+      <h3>Wie stelle ich Daten wieder her oder übertrage sie?</h3>
+      <p>Gehen Sie zu „Einstellungen &gt; Daten &gt; Datenbank importieren" und wählen Sie eine zuvor exportierte Datei. Der Import ersetzt alle vorhandenen Daten – exportieren Sie daher vorher ein Backup.</p>
+
+      <h3>Wie ändere ich die Menüsprache?</h3>
+      <p>Gehen Sie zu „Einstellungen &gt; Sprache" und wählen Sie unter den 11 Sprachen. Die Änderung wird sofort wirksam.</p>
+
+      <h3>Wie lösche ich einen Eintrag?</h3>
+      <p>Wischen Sie in der Liste „Einträge" einen Eintrag nach links und tippen Sie „Löschen". Tippen Sie auf einen Eintrag, um ihn zu bearbeiten.</p>
+
+      <h3>Wie funktioniert die Ölcheck-Erinnerung?</h3>
+      <p>Die App plant 25 Tage nach Ihrer letzten Wartung oder Ihrem letzten Ölcheck eine Systembenachrichtigung. Wenn der Ölverbrauch 1000 ml erreicht, warnen Sie die Statistik „Ölnachfüllungen" und die Ölstatus-Karte.</p>
+
+      <h3>Wie lösche ich alle App-Daten?</h3>
+      <p>Durch das Deinstallieren der App werden alle lokalen Einträge gelöscht. Exportieren Sie vorher ein Backup, um Datenverlust zu vermeiden.</p>
+
+      <h2>Kontakt</h2>
+      <p>Wenn diese Antworten Ihr Problem nicht lösen, kontaktieren Sie uns bitte – wir antworten so schnell wie möglich:</p>
+      <ul>
+        <li>Support-E-Mail: <a href="mailto:vegaodm@outlook.com">vegaodm@outlook.com</a></li>
+      </ul>
+    </div>
+
+    <!-- ============ Italiano ============ -->
+    <div class="lang-panel" data-lang="it">
+      <h1>Guida e supporto di CarLogs</h1>
+      <p class="version">Versione 1.2 (Build 3)</p>
+
+      <p>CarLogs è un'app per registrare rifornimenti di carburante, manutenzioni, controlli olio e spese del tuo veicolo. Supporta 11 lingue (English, 简体中文, Español, 日本語, Français, Deutsch, Italiano, 한국어, Polski, Português, Nederlands) e tutti i dati sono conservati interamente sul tuo dispositivo.</p>
+
+      <h2>Domande frequenti</h2>
+
+      <h3>Come leggo una pompa da una foto?</h3>
+      <p>Nella scheda "Registrazioni" tocchi "Scatta foto" e fotografî la pompa, oppure ne scelga una con "Scegli foto". I valori vengono letti sul dispositivo e la foto non viene conservata. Se una lettura è sbagliata, trascini il riquadro sul display che ha usato e tocchi "Rileggi": il riquadro indica il display, e l'app lo allarga solo quanto serve.</p>
+      <p>Il lettore è stato misurato su distributori cinesi. I display con etichette in inglese, galloni o virgola decimale non sono ancora stati misurati: controlli i valori prima di salvare — non viene registrato nulla finché non salva il rifornimento.</p>
+
+      <h3>Come faccio il backup dei dati?</h3>
+      <p>Vai in "Impostazioni &gt; Dati &gt; Esporta database". L'app preparerà un file di database SQLite che potrai salvare o condividere in qualsiasi posizione (iCloud Drive, l'app File, AirDrop o un messaggio).</p>
+
+      <h3>Come ripristino o migro i dati?</h3>
+      <p>Vai in "Impostazioni &gt; Dati &gt; Importa database" e scegli un file esportato in precedenza. L'importazione sostituirà tutti i dati esistenti, quindi esporta prima un backup.</p>
+
+      <h3>Come cambio la lingua dell'interfaccia?</h3>
+      <p>Vai in "Impostazioni &gt; Lingua" e scegli tra le 11 lingue disponibili. La modifica ha effetto immediatamente.</p>
+
+      <h3>Come elimino una registrazione?</h3>
+      <p>Nell'elenco Registrazioni scorri verso sinistra su una registrazione e tocca "Elimina". Tocca una registrazione per modificarla.</p>
+
+      <h3>Come funziona il promemoria del controllo olio?</h3>
+      <p>L'app pianifica una notifica di sistema 25 giorni dopo la manutenzione o il controllo olio più recente. Quando il consumo di olio si avvicina a 1000 ml, la statistica "Rabbocchi olio" e la scheda di stato dell'olio ti avviseranno.</p>
+
+      <h3>Come elimino tutti i dati dell'app?</h3>
+      <p>Disinstallare l'app cancella tutte le registrazioni locali. Esporta prima un backup per evitare perdite di dati.</p>
+
+      <h2>Contatti</h2>
+      <p>Se queste risposte non risolvono il problema, contattaci e risponderemo il prima possibile:</p>
+      <ul>
+        <li>E-mail di supporto: <a href="mailto:vegaodm@outlook.com">vegaodm@outlook.com</a></li>
+      </ul>
+    </div>
+
+    <!-- ============ 한국어 ============ -->
+    <div class="lang-panel" data-lang="ko">
+      <h1>CarLogs 도움말 및 지원</h1>
+      <p class="version">버전 1.2 (Build 3)</p>
+
+      <p>CarLogs는 차량의 주유, 정비, 오일 점검, 지출을 기록하는 앱입니다. 11개 언어(English, 简体中文, Español, 日本語, Français, Deutsch, Italiano, 한국어, Polski, Português, Nederlands)를 지원하며 모든 데이터는 전적으로 기기에 저장됩니다.</p>
+
+      <h2>자주 묻는 질문</h2>
+
+      <h3>사진으로 주유기 수치를 읽으려면?</h3>
+      <p>"기록" 탭에서 "사진 촬영"을 눌러 주유기를 찍거나 "사진 선택"으로 사진을 고르세요. 수치는 기기에서 읽고 사진은 보관하지 않습니다. 값이 틀렸다면 주유한 화면 위로 상자를 끌어 놓고 "다시 읽기"를 누르세요. 상자가 어느 화면을 읽을지 지정하며, 앱은 필요한 만큼만 상자를 넓힙니다.</p>
+      <p>판독은 중국 주유소에서 검증했습니다. 영어 표기, 갤런, 쉼표를 소수점으로 쓰는 화면은 아직 검증하지 않았으니 저장 전에 수치를 확인하세요. 주유 기록을 저장하기 전에는 아무것도 기록되지 않습니다.</p>
+
+      <h3>데이터를 백업하려면?</h3>
+      <p>"설정 &gt; 데이터 &gt; 데이터베이스 내보내기"로 이동합니다. 앱이 SQLite 데이터베이스 파일을 준비하며, 원하는 위치(iCloud 드라이브, 파일 앱, AirDrop, 메시지 등)에 저장하거나 공유할 수 있습니다.</p>
+
+      <h3>데이터를 복원하거나 이전하려면?</h3>
+      <p>"설정 &gt; 데이터 &gt; 데이터베이스 가져오기"로 이동해 이전에 내보낸 파일을 선택합니다. 가져오기는 기존 데이터를 모두 대체하므로 먼저 백업을 내보내세요.</p>
+
+      <h3>인터페이스 언어를 변경하려면?</h3>
+      <p>"설정 &gt; 언어"에서 11개 언어 중 선택합니다. 변경은 즉시 적용됩니다.</p>
+
+      <h3>기록을 삭제하려면?</h3>
+      <p>"기록" 목록에서 기록을 왼쪽으로 밀고 "삭제"를 탭합니다. 기록을 탭하면 편집할 수 있습니다.</p>
+
+      <h3>오일 점검 알림은 어떻게 작동하나요?</h3>
+      <p>앱은 가장 최근의 정비 또는 오일 점검 후 25일 뒤 시스템 알림을 예약합니다. 오일 소모량이 약 1000ml에 가까워지면 "오일 보충" 통계와 오일 상태 카드가 경고합니다.</p>
+
+      <h3>앱 데이터를 모두 삭제하려면?</h3>
+      <p>앱을 삭제하면 로컬의 모든 기록이 지워집니다. 데이터 손실을 피하려면 먼저 백업을 내보내세요.</p>
+
+      <h2>문의</h2>
+      <p>위 내용으로 문제가 해결되지 않으면 아래로 연락해 주세요. 가능한 한 빨리 답변드리겠습니다.</p>
+      <ul>
+        <li>지원 이메일: <a href="mailto:vegaodm@outlook.com">vegaodm@outlook.com</a></li>
+      </ul>
+    </div>
+
+    <!-- ============ Polski ============ -->
+    <div class="lang-panel" data-lang="pl">
+      <h1>Pomoc i wsparcie CarLogs</h1>
+      <p class="version">Wersja 1.2 (Build 3)</p>
+
+      <p>CarLogs to aplikacja do rejestrowania tankowań paliwa, serwisu, kontroli oleju i wydatków Twojego pojazdu. Obsługuje 11 języków (English, 简体中文, Español, 日本語, Français, Deutsch, Italiano, 한국어, Polski, Português, Nederlands), a wszystkie dane są przechowywane w całości na Twoim urządzeniu.</p>
+
+      <h2>Często zadawane pytania</h2>
+
+      <h3>Jak odczytać dystrybutor ze zdjęcia?</h3>
+      <p>Na karcie „Wpisy" dotknij „Zrób zdjęcie" i sfotografuj dystrybutor albo wybierz zdjęcie przez „Wybierz zdjęcie". Wartości są odczytywane na urządzeniu, a zdjęcie nie jest zachowywane. Jeśli odczyt jest błędny, przeciągnij ramkę na wyświetlacz, z którego korzystałeś, i dotknij „Odczytaj ponownie": ramka wskazuje wyświetlacz, a aplikacja powiększa ją tylko w razie potrzeby.</p>
+      <p>Czytnik został sprawdzony na chińskich stacjach. Wyświetlacze z angielskimi opisami, galonami lub przecinkiem jako separatorem dziesiętnym nie zostały jeszcze sprawdzone — przed zapisaniem sprawdź wartości; nic nie zostanie zapisane, dopóki nie zapiszesz tankowania.</p>
+
+      <h3>Jak wykonać kopię zapasową danych?</h3>
+      <p>Wejdź w „Ustawienia &gt; Dane &gt; Eksportuj bazę danych". Aplikacja przygotuje plik bazy SQLite, który możesz zapisać lub udostępnić (np. iCloud Drive, aplikacja Pliki, AirDrop lub wiadomość).</p>
+
+      <h3>Jak przywrócić lub przenieść dane?</h3>
+      <p>Wejdź w „Ustawienia &gt; Dane &gt; Importuj bazę danych" i wybierz wcześniej wyeksportowany plik. Import zastąpi wszystkie istniejące dane, dlatego najpierw wykonaj kopię zapasową.</p>
+
+      <h3>Jak zmienić język interfejsu?</h3>
+      <p>Wejdź w „Ustawienia &gt; Język" i wybierz spośród 11 języków. Zmiana jest natychmiastowa.</p>
+
+      <h3>Jak usunąć wpis?</h3>
+      <p>Na liście Wpisów przesuń wpis w lewo i dotknij „Usuń". Dotknij wpisu, aby go edytować.</p>
+
+      <h3>Jak działają przypomnienia o kontroli oleju?</h3>
+      <p>Aplikacja planuje powiadomienie systemowe 25 dni po ostatnim serwisie lub kontroli oleju. Gdy zużycie oleju zbliży się do 1000 ml, statystyka „Uzupełnienia oleju" i karta stanu oleju ostrzegą Cię.</p>
+
+      <h3>Jak usunąć wszystkie dane aplikacji?</h3>
+      <p>Odinstalowanie aplikacji usuwa wszystkie lokalne wpisy. Najpierw wyeksportuj kopię, aby nie stracić danych.</p>
+
+      <h2>Kontakt</h2>
+      <p>Jeśli powyższe odpowiedzi nie rozwiążą problemu, skontaktuj się z nami, a odpowiemy najszybciej, jak to możliwe:</p>
+      <ul>
+        <li>E-mail pomocy: <a href="mailto:vegaodm@outlook.com">vegaodm@outlook.com</a></li>
+      </ul>
+    </div>
+
+    <!-- ============ Português ============ -->
+    <div class="lang-panel" data-lang="pt">
+      <h1>Ajuda e suporte do CarLogs</h1>
+      <p class="version">Versão 1.2 (Build 3)</p>
+
+      <p>O CarLogs é um aplicativo para registrar abastecimentos, manutenções, verificações de óleo e despesas do seu veículo. Ele oferece suporte a 11 idiomas (English, 简体中文, Español, 日本語, Français, Deutsch, Italiano, 한국어, Polski, Português, Nederlands) e todos os dados são armazenados integralmente no seu dispositivo.</p>
+
+      <h2>Perguntas frequentes</h2>
+
+      <h3>Como leio uma bomba a partir de uma foto?</h3>
+      <p>No separador "Registros", toque em "Tirar foto" e fotografe a bomba, ou escolha uma com "Escolher foto". Os valores são lidos no seu dispositivo e a foto não é guardada. Se uma leitura estiver errada, arraste a caixa sobre o ecrã que usou e toque em "Reler": a caixa indica o ecrã, e a app só a amplia o necessário.</p>
+      <p>O leitor foi medido em postos chineses. Ecrãs com rótulos em inglês, galões ou vírgula decimal ainda não foram medidos, por isso confirme os valores antes de guardar — nada é registado até guardar o abastecimento.</p>
+
+      <h3>Como faço backup dos dados?</h3>
+      <p>Vá em "Ajustes &gt; Dados &gt; Exportar banco de dados". O aplicativo preparará um arquivo de banco de dados SQLite que você pode salvar ou compartilhar em qualquer lugar (iCloud Drive, app Arquivos, AirDrop ou mensagem).</p>
+
+      <h3>Como restauro ou migro os dados?</h3>
+      <p>Vá em "Ajustes &gt; Dados &gt; Importar banco de dados" e escolha um arquivo exportado anteriormente. A importação substituirá todos os dados existentes; exporte um backup antes.</p>
+
+      <h3>Como mudar o idioma da interface?</h3>
+      <p>Vá em "Ajustes &gt; Idioma" e escolha entre os 11 idiomas disponíveis. A mudança entra em vigor imediatamente.</p>
+
+      <h3>Como excluir um registro?</h3>
+      <p>Na lista de Registros, deslize um registro para a esquerda e toque em "Excluir". Toque em qualquer registro para editá-lo.</p>
+
+      <h3>Como funciona o lembrete de verificação de óleo?</h3>
+      <p>O aplicativo agenda uma notificação do sistema 25 dias após sua manutenção ou verificação de óleo mais recente. Quando o consumo de óleo se aproxima de 1000 ml, a estatística "Complementos de óleo" e o cartão de status do óleo irão alertá-lo.</p>
+
+      <h3>Como excluir todos os dados do aplicativo?</h3>
+      <p>Desinstalar o aplicativo limpa todos os registros locais. Exporte um backup primeiro para não perder dados.</p>
+
+      <h2>Contato</h2>
+      <p>Se essas respostas não resolverem seu problema, entre em contato e responderemos o mais rápido possível:</p>
+      <ul>
+        <li>E-mail de suporte: <a href="mailto:vegaodm@outlook.com">vegaodm@outlook.com</a></li>
+      </ul>
+    </div>
+
+    <!-- ============ Nederlands ============ -->
+    <div class="lang-panel" data-lang="nl">
+      <h1>Hulp en ondersteuning van CarLogs</h1>
+      <p class="version">Versie 1.2 (Build 3)</p>
+
+      <p>CarLogs is een app voor het registreren van tankbeurten, onderhoud, oliecontroles en uitgaven van uw voertuig. De app ondersteunt 11 talen (English, 简体中文, Español, 日本語, Français, Deutsch, Italiano, 한국어, Polski, Português, Nederlands) en alle gegevens worden volledig op uw apparaat opgeslagen.</p>
+
+      <h2>Veelgestelde vragen</h2>
+
+      <h3>Hoe lees ik een pomp vanaf een foto?</h3>
+      <p>Tik op het tabblad "Registraties" op "Foto maken" en fotografeer de pomp, of kies er een met "Foto kiezen". De cijfers worden op je toestel gelezen en de foto wordt niet bewaard. Klopt een waarde niet, sleep het kader over het display waar je hebt getankt en tik op "Opnieuw lezen": het kader bepaalt welk display, en de app vergroot het alleen zo ver als nodig.</p>
+      <p>De lezer is gemeten op Chinese tankstations. Displays met Engelse labels, gallons of een komma als decimaalteken zijn nog niet gemeten, dus controleer de cijfers voordat je opslaat — er wordt niets vastgelegd voordat je de tankbeurt opslaat.</p>
+
+      <h3>Hoe maak ik een back-up van mijn gegevens?</h3>
+      <p>Ga naar "Instellingen &gt; Gegevens &gt; Database exporteren". De app maakt een SQLite-databasebestand dat u op elke locatie kunt opslaan of delen (zoals iCloud Drive, de bestandenapp, AirDrop of een bericht).</p>
+
+      <h3>Hoe herstel of migreer ik mijn gegevens?</h3>
+      <p>Ga naar "Instellingen &gt; Gegevens &gt; Database importeren" en kies een eerder geëxporteerd bestand. Importeren vervangt alle bestaande gegevens, dus exporteer eerst een back-up.</p>
+
+      <h3>Hoe wijzig ik de interface-taal?</h3>
+      <p>Ga naar "Instellingen &gt; Taal" en kies uit de 11 beschikbare talen. De wijziging gaat direct in.</p>
+
+      <h3>Hoe verwijder ik een registratie?</h3>
+      <p>Veeg in de lijst Registraties een registratie naar links en tik op "Verwijderen". Tik op een registratie om deze te bewerken.</p>
+
+      <h3>Hoe werkt de oliecontrole-herinnering?</h3>
+      <p>De app plant 25 dagen na uw laatste onderhoud of oliecontrole een systeemmelding. Wanneer het olieverbruik de 1000 ml nadert, waarschuwen de statistiek "Oliebijvullingen" en de olie-statuskaart u.</p>
+
+      <h3>Hoe verwijder ik alle app-gegevens?</h3>
+      <p>Door de app te verwijderen worden alle lokale registraties gewist. Exporteer eerst een back-up om gegevensverlies te voorkomen.</p>
+
+      <h2>Contact</h2>
+      <p>Als deze antwoorden uw probleem niet oplossen, neem dan contact op en wij reageren zo snel mogelijk:</p>
+      <ul>
+        <li>Ondersteuningse-mail: <a href="mailto:vegaodm@outlook.com">vegaodm@outlook.com</a></li>
+      </ul>
+    </div>
   </div>
 
   <script>
     (function () {
-      var en = document.getElementById('en');
-      var zh = document.getElementById('zh');
-      var enBtn = document.getElementById('enBtn');
-      var zhBtn = document.getElementById('zhBtn');
-      function show(lang) {
-        en.style.display = lang === 'en' ? 'block' : 'none';
-        zh.style.display = lang === 'zh' ? 'block' : 'none';
-        enBtn.classList.toggle('active', lang === 'en');
-        zhBtn.classList.toggle('active', lang === 'zh');
+      var langs = [
+        { code: 'en', label: 'English' },
+        { code: 'zh', label: '简体中文' },
+        { code: 'es', label: 'Español' },
+        { code: 'ja', label: '日本語' },
+        { code: 'fr', label: 'Français' },
+        { code: 'de', label: 'Deutsch' },
+        { code: 'it', label: 'Italiano' },
+        { code: 'ko', label: '한국어' },
+        { code: 'pl', label: 'Polski' },
+        { code: 'pt', label: 'Português' },
+        { code: 'nl', label: 'Nederlands' }
+      ];
+      var bar = document.getElementById('langBar');
+      var panels = document.querySelectorAll('.lang-panel');
+      function show(code) {
+        panels.forEach(function (p) { p.style.display = p.getAttribute('data-lang') === code ? 'block' : 'none'; });
+        bar.querySelectorAll('a').forEach(function (a) { a.classList.toggle('active', a.getAttribute('data-lang') === code); });
       }
-      enBtn.addEventListener('click', function (e) { e.preventDefault(); show('en'); });
-      zhBtn.addEventListener('click', function (e) { e.preventDefault(); show('zh'); });
+      langs.forEach(function (l) {
+        var a = document.createElement('a');
+        a.href = '#';
+        a.setAttribute('data-lang', l.code);
+        a.textContent = l.label;
+        a.addEventListener('click', function (e) { e.preventDefault(); show(l.code); });
+        bar.appendChild(a);
+      });
+      show('en');
     })();
   </script>
 </body>
